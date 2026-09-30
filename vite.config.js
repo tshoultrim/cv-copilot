@@ -5,6 +5,7 @@ import viteApiPlugin from "./viteApiPlugin.js";
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
   return {
+    base: mode === "github-pages" ? "/cv-copilot/" : "/",
     plugins: [react(), viteApiPlugin(env)],
     server: {
       host: true,

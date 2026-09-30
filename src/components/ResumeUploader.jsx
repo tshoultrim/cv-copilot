@@ -7,6 +7,7 @@ import { useState, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { refreshResumeData } from "../hooks/useResumeData";
 import { useUIStore, selectIsAdmin } from "../store";
+import { resumePdfUrl } from "../utils/deployment";
 
 // ─── Icons ──────────────────────────────────────────────────────────────────
 function DownloadIcon() {
@@ -157,7 +158,7 @@ export default function ResumeUploader() {
       {/* Download Button — always visible */}
       <div className="flex gap-2">
         <a
-          href="/api/resume/download-pdf"
+          href={resumePdfUrl()}
           download
           className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-pulse/40 bg-pulse/10 px-3 py-3 font-mono text-[11px] text-pulse transition-colors hover:bg-pulse/20"
           aria-label="Download PDF resume"

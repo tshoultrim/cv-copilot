@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useUIStore, selectIsAdmin } from "../store";
 import SkillsRadar from "./SkillsRadar";
 import ResumeUploader from "./ResumeUploader";
+import { isStaticDeployment, resumePdfUrl } from "../utils/deployment";
 
 export default function DashboardSidebar() {
   const {
@@ -28,12 +29,14 @@ export default function DashboardSidebar() {
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <button
-            onClick={isAdmin ? openEditModal : openAuthModal}
-            className="px-2 py-1 rounded-md border border-slate-700 font-mono text-[9px] uppercase text-mist transition-all shadow-sm hover:text-white hover:border-slate-500"
-          >
-            {isAdmin ? "Edit Resume" : "Owner sign-in"}
-          </button>
+          {!isStaticDeployment() && (
+            <button
+              onClick={isAdmin ? openEditModal : openAuthModal}
+              className="px-2 py-1 rounded-md border border-slate-700 font-mono text-[9px] uppercase text-mist transition-all shadow-sm hover:text-white hover:border-slate-500"
+            >
+              {isAdmin ? "Edit Resume" : "Owner sign-in"}
+            </button>
+          )}
           <button
             onClick={closeDashboardModal}
             className="md:hidden rounded-full p-1 text-mist/50 hover:text-white hover:bg-slate-800 transition-colors"
@@ -60,7 +63,7 @@ export default function DashboardSidebar() {
             <p><span className="font-mono uppercase text-emerald-300">Active Build</span><br />Agentic HR System &amp; 3D Interactive Portfolio</p>
           </div>
           <a
-            href="/api/resume/download-pdf"
+            href={resumePdfUrl()}
             target="_blank"
             rel="noreferrer"
             className="mt-3 flex items-center justify-center gap-2 rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-3 py-2 font-mono text-[9px] font-semibold uppercase tracking-wide text-cyan-300 transition hover:bg-cyan-500/20"

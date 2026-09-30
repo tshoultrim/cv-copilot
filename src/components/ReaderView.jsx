@@ -3,6 +3,7 @@
 // Top padding accounts for the new NavBar (h-12 = 48px → pt-20 ensures clearance).
 
 import { useResumeData } from "../hooks/useResumeData";
+import { resumePdfUrl } from "../utils/deployment";
 
 function Section({ title, children }) {
   return (
@@ -125,7 +126,7 @@ export default function ReaderView() {
         </Section>
 
         <a
-          href="/api/resume/download-pdf"
+          href={resumePdfUrl()}
           download
           className="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-pulse/40 bg-pulse/10 px-4 py-2 font-mono text-xs text-pulse hover:bg-pulse/20"
         >

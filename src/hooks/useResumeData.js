@@ -113,6 +113,7 @@ async function fetchAndUpdate() {
 /** Call once at app start. Idempotent — safe to call multiple times. */
 export function initResumePolling() {
   if (_pollTimer) return;
+  if (import.meta.env.MODE === "github-pages") return;
   fetchAndUpdate(); // immediate first fetch
   _pollTimer = setInterval(fetchAndUpdate, POLL_INTERVAL);
 }

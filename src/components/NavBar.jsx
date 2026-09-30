@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useUIStore, selectIsAdmin } from "../store";
 import { useResumeData, useSyncStatus } from "../hooks/useResumeData";
+import { publicAssetUrl, resumePdfUrl } from "../utils/deployment";
 
 
 // ─── Live sync indicator ───────────────────────────────────────────────────────
@@ -75,7 +76,7 @@ function ProfileAvatar({ avatar, name, size = 32 }) {
       {/* Avatar image or initials */}
       {avatar ? (
         <img
-          src={avatar}
+          src={publicAssetUrl(avatar)}
           alt={name}
           className="h-full w-full rounded-full object-cover border border-synapse/30"
           style={{ boxShadow: "0 0 8px rgba(0, 210, 255, 0.2)" }}
@@ -218,7 +219,7 @@ export default function NavBar() {
 
           {/* Download PDF — desktop */}
           <a
-            href="/api/resume/download-pdf"
+            href={resumePdfUrl()}
             download
             className="hidden items-center gap-1.5 rounded-lg border border-pulse/30 bg-pulse/10 px-3 py-1.5 font-mono text-[10px] text-pulse transition-all duration-300 hover:bg-pulse/20 hover:shadow-[0_0_15px_rgba(0,255,135,0.3)] sm:flex"
             aria-label="Download PDF resume"
@@ -290,7 +291,7 @@ export default function NavBar() {
             {/* Download PDF — inside mobile menu */}
             <div className="mt-3 border-t border-white/10 pt-3">
               <a
-                href="/api/resume/download-pdf"
+                href={resumePdfUrl()}
                 download
                 className="flex w-full items-center justify-center gap-2 rounded-lg border border-pulse/40 bg-pulse/10 px-3 py-2.5 font-mono text-[11px] text-pulse transition-colors hover:bg-pulse/20"
               >

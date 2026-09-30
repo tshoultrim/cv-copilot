@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { NODES, PROFILE } from "../data/resumeData";
 import { useUIStore } from "../store";
+import { resumePdfUrl } from "../utils/deployment";
 
 export default function Sidebar() {
   const mode = useUIStore((s) => s.mode);
@@ -85,7 +86,7 @@ export default function Sidebar() {
         </div>
 
         <a
-          href="/api/resume/download-pdf"
+          href={resumePdfUrl()}
           download
           className="mt-3 flex w-full items-center justify-center rounded-lg border border-pulse/40 bg-pulse/10 px-3 py-2 text-center font-mono text-[11px] text-pulse transition-colors hover:bg-pulse/20"
         >
@@ -175,7 +176,7 @@ export default function Sidebar() {
               ))}
             </nav>
             <a
-              href="/api/resume/download-pdf"
+              href={resumePdfUrl()}
               download
               className="mt-2 flex w-full items-center justify-center rounded-lg border border-pulse/40 bg-pulse/10 px-3 py-2 text-center font-mono text-[11px] text-pulse"
             >

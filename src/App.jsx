@@ -13,6 +13,7 @@ import EditResumeModal from "./components/EditResumeModal";
 import ProfileUploadModal from "./components/ProfileUploadModal";
 import { useUIStore } from "./store";
 import { initResumePolling } from "./hooks/useResumeData";
+import { isStaticDeployment } from "./utils/deployment";
 
 function CanvasLoader() {
   return (
@@ -92,10 +93,10 @@ export default function App() {
       <OverlayControls />
 
       {/* Layer 7: AI Assistant (always available) */}
-      <AiAgentModal />
+      {!isStaticDeployment() && <AiAgentModal />}
 
       {/* Layer 8: Dashboard & Auth Modals */}
-      {mode === "3d" && (
+      {mode === "3d" && !isStaticDeployment() && (
         <>
           <DashboardSidebar />
           <AuthModal />
@@ -103,6 +104,7 @@ export default function App() {
           <ProfileUploadModal />
         </>
       )}
+      {mode === "3d" && isStaticDeployment() && <DashboardSidebar />}
     </div>
   );
 }
