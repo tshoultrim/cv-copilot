@@ -6,7 +6,7 @@ An interactive 3D portfolio and AI-powered resume assistant.
 [![Three.js](https://img.shields.io/badge/Three.js-WebGL-black?logo=threedotjs)](https://threejs.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![Groq SDK](https://img.shields.io/badge/Groq-SDK-F55036)](https://console.groq.com/docs/overview)
-[![Vercel](https://img.shields.io/badge/Deploy-Vercel-black?logo=vercel)](https://vercel.com/)
+[![GitHub Repository](https://img.shields.io/badge/Repository-GitHub-181717?logo=github)](https://github.com/tshoultrim/cv-copilot)
 
 **Repository:** [github.com/tshoultrim/cv-copilot](https://github.com/tshoultrim/cv-copilot)
 
@@ -64,4 +64,3 @@ fetched from GitHub's REST API.
 The immersive 3D presentation creates a distinctive way to explore a resume,
 but uses more GPU and battery than a conventional page. Reader mode and semantic
 HTML provide a simpler alternative.
-
