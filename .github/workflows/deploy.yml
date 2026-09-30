@@ -31,6 +31,8 @@ jobs:
         run: npm ci
 
       - name: Build GitHub Pages site
+        env:
+          VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL }}
         run: npm run build -- --mode github-pages
 
       - name: Configure Pages

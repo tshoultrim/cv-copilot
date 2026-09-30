@@ -29,6 +29,7 @@ export default function App() {
   const mode = useUIStore((s) => s.mode);
 
   useEffect(() => {
+    if (isStaticDeployment()) return undefined;
     const { editToken, clearEditToken, setAdminSessionVerified } = useUIStore.getState();
     if (!editToken) return undefined;
 
@@ -93,7 +94,7 @@ export default function App() {
       <OverlayControls />
 
       {/* Layer 7: AI Assistant (always available) */}
-      {!isStaticDeployment() && <AiAgentModal />}
+      <AiAgentModal />
 
       {/* Layer 8: Dashboard & Auth Modals */}
       {mode === "3d" && !isStaticDeployment() && (

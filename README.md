@@ -68,10 +68,18 @@ publishes the static site at
    `/cv-copilot/` base path, and deploys `dist/`.
 
 GitHub Pages hosts static files only; it does not run this project's Node
-`/api/*` functions. Its build uses the bundled resume and static `public/resume.pdf`.
-AI chat, owner OTP, saved editing, live server resume polling, and dynamic PDF
-generation require the API deployment described below. Public GitHub repository
-sync continues to use GitHub's public REST API.
+`/api/*` functions. The AI chat interface is available on Pages and can call a
+separately deployed Vercel API: add a GitHub repository **Actions variable**
+named `VITE_API_BASE_URL` with the Vercel origin (for example,
+`https://your-project.vercel.app`, without a trailing slash), then rerun the
+Pages workflow. The chat API enables CORS for this cross-origin request. Without
+that variable, the chat remains visible and displays a configuration message
+when used.
+
+The Pages build uses the bundled resume and static `public/resume.pdf`. Owner
+OTP, saved editing, live server resume polling, and dynamic PDF generation
+require the Vercel deployment described below. Public GitHub repository sync
+continues to use GitHub's public REST API.
 
 ### Vercel — full application and serverless API
 
@@ -91,7 +99,10 @@ variables under **Project → Settings → Environment Variables**:
 | `VITE_RESUME_GIST_URL` | Optional public resume Gist read fallback |
 
 After deployment, test `/api/chat`, owner OTP, resume editing, and the PDF
-download. Do not add server secrets as `VITE_` variables.
+download. To connect the GitHub Pages AI chat to this API, copy the Vercel
+deployment origin into the GitHub repository Actions variable
+`VITE_API_BASE_URL` and rerun the Pages workflow. This value is a public API
+origin, not a secret. Never add server secrets as `VITE_` variables.
 
 ## System Overview
 

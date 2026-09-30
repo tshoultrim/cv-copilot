@@ -3,10 +3,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import { PROFILE } from "../data/resumeData";
 import { useUIStore } from "../store";
+import { apiUrl } from "../utils/deployment";
 
 // ─── Match mode helper ────────────────────────────────────────────────────────
 async function postMatch(payload) {
-  const res = await fetch("/api/chat", {
+  const res = await fetch(apiUrl("chat"), {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
@@ -125,7 +126,7 @@ function ChatTab() {
     abortRef.current = controller;
 
     try {
-      const res = await fetch("/api/chat", {
+      const res = await fetch(apiUrl("chat"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ mode: "chat", messages: next }),

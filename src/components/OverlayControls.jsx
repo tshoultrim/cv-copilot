@@ -1,5 +1,4 @@
 import { useUIStore } from "../store";
-import { isStaticDeployment } from "../utils/deployment";
 
 export default function OverlayControls() {
   const { toggleDashboardModal, toggleAiPanel, aiPanelOpen, mode } = useUIStore();
@@ -49,7 +48,7 @@ export default function OverlayControls() {
       </div>}
 
       {/* Bottom-Right: AI Chatbot launcher — all viewports */}
-      {!isStaticDeployment() && <div className="fixed bottom-6 right-6 z-40">
+      <div className="fixed bottom-6 right-6 z-40">
         <button
           onClick={toggleAiPanel}
           className={`group flex h-14 w-14 items-center justify-center rounded-full backdrop-blur-xl transition-all duration-300 hover:scale-105 active:scale-95 ${
@@ -75,7 +74,7 @@ export default function OverlayControls() {
             <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
           </svg>
         </button>
-      </div>}
+      </div>
     </>
   );
 }
